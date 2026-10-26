@@ -9,10 +9,10 @@ inventory or a stockout.
 
 MRP (material requirements planning) systems generate purchase
 requirements by multiplying each BOM line's quantity-per-unit against
-forecasted demand. That math is only as good as the BOM. A superseded
+forecasted demand. That math is only as good as the BOM configuration is. A superseded
 revision, a unit-of-measure conversion error, or a part substitution
 that never got updated in the BOM will get multiplied across every
-unit forecasted — and the error compounds silently until someone
+unit forecasted — and the error compounds until someone
 notices a shelf full of parts nobody needed, or a stockout on a part
 nobody ordered enough of.
 
