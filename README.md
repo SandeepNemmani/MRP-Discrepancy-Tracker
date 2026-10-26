@@ -60,7 +60,7 @@ python src/mrp_discrepancy_detector.py \
     --bom sample_data/bom.csv \
     --consumption sample_data/actual_consumption.csv \
     --forecast sample_data/demand_forecast.csv \
-    --threshold 0.15 \
+    --threshold 0.05 \
     --min-units 500 \
     --output-dir output
 ```
@@ -79,7 +79,7 @@ periods of consumption history):
 
 ```
 Scanned 133 BOM lines against 30 parent SKUs of consumption history.
-Flagged 23 discrepancies (21 over-stated, 2 under-stated) at a 15% threshold with >= 500 units of history.
+Flagged 23 discrepancies (21 over-stated, 2 under-stated) at a 5% threshold with >= 500 units of history.
 Total annualized dollar exposure across flagged lines: $2,867,384
 
 Top 5 by exposure:
