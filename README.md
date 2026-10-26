@@ -36,7 +36,7 @@ data is used anywhere in this repo.
 2. **Compare against the BOM.** Join the actual QPU back to the BOM's
    stated QPU and compute the percentage deviation.
 3. **Filter for signal, not noise.** Two guardrails keep the output
-   focused: a deviation threshold (default 15%) so small, expected
+   focused: a deviation threshold (default 5%) so small, expected
    variance doesn't get flagged, and a minimum historical volume
    (default 500 parent units) so a pair with only a few transactions on
    record can't produce a false positive.
