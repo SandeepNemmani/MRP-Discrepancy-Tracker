@@ -63,12 +63,14 @@ with open(OUT_DIR / "bom.csv", "w", newline="") as f:
 
 # Actual consumption history: for each parent-component pair, simulate PERIODS
 # months of "parent units serviced" and "component qty consumed", built from the
-# ground-truth qpu plus normal noise (not the corrupted BOM figure).
+# ground-truth qpu plus normal noise of +/-3% per period (not the corrupted BOM
+# figure). Noise stays well inside the detector's 5% threshold, so only the
+# planted errors get flagged.
 consumption_rows = []
 for (parent, comp), qpu in true_qpu.items():
     for period in range(1, PERIODS + 1):
         units_serviced = random.randint(40, 400)
-        noise = random.uniform(0.92, 1.08)
+        noise = random.uniform(0.97, 1.03)
         qty_consumed = max(0, round(units_serviced * qpu * noise))
         consumption_rows.append({
             "parent_sku": parent,

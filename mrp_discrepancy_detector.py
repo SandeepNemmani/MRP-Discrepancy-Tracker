@@ -16,8 +16,8 @@ was never updated) gets multiplied across every unit forecasted, and the
 error compounds silently until someone notices excess inventory sitting
 on a shelf. In a production planning environment, this exact pattern was
 identified across a set of BOM lines that were inflating MRP-driven
-requirements by more than 50% on the affected parts, avoiding roughly
-$1M a year in unnecessary purchase orders once corrected.
+requirements by about 57% over the actual material consumption plan;
+correcting them prevented potential over-procurement worth $8.4M a year.
 
 This script is a generalized, sample-data version of that detection
 approach: it does not use any real company data.
@@ -28,7 +28,7 @@ Usage
         --bom sample_data/bom.csv \
         --consumption sample_data/actual_consumption.csv \
         --forecast sample_data/demand_forecast.csv \
-        --threshold 0.15 \
+        --threshold 0.05 \
         --min-units 500 \
         --output-dir output
 """
@@ -70,7 +70,7 @@ def detect_discrepancies(
     bom: pd.DataFrame,
     actual: pd.DataFrame,
     forecast: pd.DataFrame,
-    threshold: float = 0.15,
+    threshold: float = 0.05,
     min_units: int = 500,
 ) -> pd.DataFrame:
     """Flag BOM lines whose stated QPU deviates from actual usage by more
@@ -140,8 +140,8 @@ def main():
     parser.add_argument("--bom", default="sample_data/bom.csv")
     parser.add_argument("--consumption", default="sample_data/actual_consumption.csv")
     parser.add_argument("--forecast", default="sample_data/demand_forecast.csv")
-    parser.add_argument("--threshold", type=float, default=0.15,
-                         help="Minimum absolute deviation (as a fraction of actual QPU) to flag. Default 0.15.")
+    parser.add_argument("--threshold", type=float, default=0.05,
+                         help="Minimum absolute deviation (as a fraction of actual QPU) to flag. Default 0.05.")
     parser.add_argument("--min-units", type=int, default=500,
                          help="Minimum historical parent-unit volume required before flagging. Default 500.")
     parser.add_argument("--output-dir", default="output")
